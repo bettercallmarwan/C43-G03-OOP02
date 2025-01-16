@@ -167,7 +167,6 @@ class Program
 
 public abstract class Book
 {
-
     
     public string Title { get; private protected set; }
     public string Author { get; private protected set; }
@@ -201,7 +200,7 @@ public class Ebook : Book
     {
         Console.WriteLine($"title: {Title}");
         Console.WriteLine($"author: {Author}");
-        Console.WriteLine($"isbn: {isbn}");
+        Console.WriteLine($"isbn: {Isbn}");
         Console.WriteLine($"Available: {(IsAvailable ? "Yes" : "No")}");
         Console.WriteLine($"File Size: {FileSize} MB");
     }
@@ -225,7 +224,7 @@ public class PrintedBook : Book
     {
         Console.WriteLine($"title: {Title}");
         Console.WriteLine($"author: {Author}");
-        Console.WriteLine($"isbn: {isbn}");
+        Console.WriteLine($"isbn: {Isbn}");
         Console.WriteLine($"Available: {(IsAvailable ? "Yes" : "No")}");
         Console.WriteLine($"pagw count: {PageCount} MB");
     }
