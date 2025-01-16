@@ -37,8 +37,8 @@ public class Employee
             "Employee ID: {0}\n" +
             "Name: {1}\n" +
             "Security Level: {2}\n" +
-            "Salary: {3:C}\n" +
-            "Hire Date: {4:d}\n" +
+            "Salary: {3}\n" +
+            "Hire Date: {4}\n" +
             "Gender: {5}",
             Id,
             Name,
@@ -48,6 +48,15 @@ public class Employee
             Gender
         );
     }
+    
+    public static int CompareByHiringDate (Employee e1, Employee e2)
+    {
+        DateTime date1 = new DateTime(e1.HireDate.Year , e1.HireDate.Month , e1.HireDate.Day);
+        DateTime date2 = new DateTime(e2.HireDate.Year, e2.HireDate.Month, e2.HireDate.Day);
+        return date1.CompareTo(date2);
+    }
+    
+    
 }
 #endregion
 
@@ -86,7 +95,7 @@ public class HiringDate
         get { return year; }
         set
         {
-            if (value < 1900)
+            if (value < 1980)
                 throw new ArgumentException("year must be more than 1980");
             year = value;
         }
@@ -103,6 +112,8 @@ public class HiringDate
     {
         return $"{day}-{month}-{year}";
     }
+    
+    
     
 }
 
@@ -143,16 +154,34 @@ class Program
         {
             Console.WriteLine($"error displaying employees data: {ex.Message}");
         }
+        
+        #region 4.Sort the employees based on their hire date then Print the sorted array.
+        Console.WriteLine("\nAfter sorting");
+        Array.Sort(EmpArr, Employee.CompareByHiringDate);
+        foreach (Employee employee in EmpArr)
+        {
+            Console.WriteLine(employee);
+        }
+
+        int boxingcount = 0;
+        foreach (Employee employee in EmpArr)
+        {
+            object obj = employee; 
+            Employee unboxed = (Employee)obj; 
+            boxingcount++;
+        }
+        
+        Console.WriteLine("************************");
+        Console.WriteLine("************************");
+        
+        Console.WriteLine($"boxing and unboxing occured {boxingcount} times"); 
+        #endregion
     }
 }
 
 #endregion
 
-#region 4.Sort the employees based on their hire date then Print the sorted array.
 
-
-
-#endregion
 
 #region 5-Design a program for a library management system where:
 
@@ -164,6 +193,8 @@ class Program
 /// also inheritance allowed us (with the use of abstraction) to ensure that every child class contains some functions as (display), and it also forces us to implement this function according to the class
 /// 
 /// </summary>
+///
+
 
 public abstract class Book
 {
@@ -226,10 +257,9 @@ public class PrintedBook : Book
         Console.WriteLine($"author: {Author}");
         Console.WriteLine($"isbn: {Isbn}");
         Console.WriteLine($"Available: {(IsAvailable ? "Yes" : "No")}");
-        Console.WriteLine($"pagw count: {PageCount} MB");
+        Console.WriteLine($"page count: {PageCount} MB");
     }
-    
-    
+
 }
 
 #endregion
