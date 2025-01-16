@@ -167,22 +167,19 @@ class Program
 
 public abstract class Book
 {
-    private protected string title;
-    private protected string author;
-    private protected bool isAvailable;
-    private protected string isbn;
+
     
-    public string Title { get; protected set; }
-    public string Author { get; protected set; }
-    public bool IsAvailable { get; protected set; }
-    public string Isbn { get; protected set; }
+    public string Title { get; private protected set; }
+    public string Author { get; private protected set; }
+    public bool IsAvailable { get; private protected set; }
+    public string Isbn { get; private protected set; }
 
     protected Book(string title, string author, string isbn)
     {
-        title = title;
-        author = author;
-        isbn = isbn;
-        isAvailable = true;
+        Title = title;
+        Author = author;
+        Isbn = isbn;
+        IsAvailable = true;
     }
 
     public abstract void Display();
